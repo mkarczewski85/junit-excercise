@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.List;
+
+public class ProductController {
+
+    private List<Product> productList = new ArrayList<>();
+
+    public void addProduct(Product singleProduct) {
+        if (singleProduct != null) {
+            productList.add(singleProduct);
+        }
+    }
+
+    public void addProducts(List<Product> listOfProducts) {
+        productList.addAll(listOfProducts);
+    }
+
+    public void deleteProduct(Product product) {
+        if (product != null) {
+            productList.remove(product);
+        }
+    }
+
+    public double sumPrice() {
+        double sum = 0;
+        for (Product p : productList) {
+            sum += p.getPrice();
+        }
+        return sum;
+    }
+
+    public void addDiscount(int percent) {
+        for (Product p : productList) {
+            double newPrice = p.getPrice() * (100 - percent)/100;
+            p.setPrice(newPrice);
+        }
+
+//        productList.forEach(p -> p.setPrice(p.getPrice() * (100 - percent)/100));
+    }
+
+    public int getCartSize() {
+        return this.productList.size();
+    }
+
+}
